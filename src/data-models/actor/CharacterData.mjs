@@ -1,3 +1,10 @@
+import { prepareAbilityDerivedData } from "../../logic/abilities.mjs";
+import { prepareDefenseDerivedData } from "../../logic/defenses.mjs";
+import { prepareHealthDerivedData } from "../../logic/health.mjs";
+import { prepareShieldsDerivedData } from "../../logic/shields.mjs";
+import { prepareSkillDerivedData } from "../../logic/skills.mjs";
+import { prepareTraitsDerivedData } from "../../logic/traits.mjs";
+
 const fields = foundry.data.fields;
 
 function abilityField(label) {
@@ -113,5 +120,13 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     };
   }
 
-  // prepareDerivedData() will be added when logic functions are ported
+  prepareDerivedData() {
+    this.parent.cache?.invalidateAll();
+    prepareTraitsDerivedData(this);
+    prepareAbilityDerivedData(this);
+    prepareSkillDerivedData(this);
+    prepareShieldsDerivedData(this);
+    prepareDefenseDerivedData(this);
+    prepareHealthDerivedData(this);
+  }
 }

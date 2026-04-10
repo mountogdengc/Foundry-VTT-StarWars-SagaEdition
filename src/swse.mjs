@@ -109,6 +109,43 @@ Hooks.once("init", () => {
     type: Boolean,
     default: false,
   });
+
+  game.settings.register("swse", "homebrewUseLilLiteralistSkills", {
+    name: "Use Lil Literalist Skill Groups",
+    hint: "Use homebrew grouped skill variant by Lil Literalist.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register("swse", "homebrewUseDarthauthorSkills", {
+    name: "Use Darthauthor Skill Groups",
+    hint: "Use homebrew grouped skill variant by Darthauthor.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register("swse", "skillFocusCalculation", {
+    name: "Skill Focus Calculation",
+    hint: "How Skill Focus bonus is calculated.",
+    scope: "world",
+    config: true,
+    type: String,
+    default: "flat",
+    choices: { flat: "Flat (+5)", charLevelUp: "Half Level (Round Up)", charLevelDown: "Half Level (Round Down)" },
+  });
+
+  game.settings.register("swse", "enableEncumbranceByWeight", {
+    name: "Enable Encumbrance by Weight",
+    hint: "Apply encumbrance penalties based on carried weight.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
 });
 
 Hooks.once("ready", async () => {

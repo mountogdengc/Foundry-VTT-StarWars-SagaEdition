@@ -616,12 +616,15 @@ export const defaultSkills = ["Acrobatics", "Climb", "Deception", "Endurance", "
 export const defaultVehicleSkills = ["Pilot (Pilot)", "Initiative (Pilot)", "Stealth (Pilot)", "Deception (Pilot)", "Pilot (Copilot)", "Use Computer (Commander)", "Knowledge (Tactics) (Commander)", "Mechanics (System Operator)", "Use Computer (System Operator)", "Mechanics (Engineer)"];
 
 export function getGroupedSkillMap() {
-    if (game.settings.get("swse", "homebrewUseLilLiteralistSkills")) {
-        return HOMEBREW_LILLITERALIST_SKILLS;
-    }
-
-    if (game.settings.get("swse", "homebrewUseDarthauthorSkills")) {
-        return HOMEBREW_DARTHAUTHOR_SKILLS;
+    try {
+        if (game.settings.get("swse", "homebrewUseLilLiteralistSkills")) {
+            return HOMEBREW_LILLITERALIST_SKILLS;
+        }
+        if (game.settings.get("swse", "homebrewUseDarthauthorSkills")) {
+            return HOMEBREW_DARTHAUTHOR_SKILLS;
+        }
+    } catch (e) {
+        // Settings not yet registered during early data preparation
     }
     return undefined;
 }
