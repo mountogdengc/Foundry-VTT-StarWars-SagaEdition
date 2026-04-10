@@ -1,0 +1,52 @@
+<h2>Character Sheet Tab Structure</h2>
+<p class="subtitle">The old sheet had 11 tabs. How should we organize the rebuild?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Consolidated (6 tabs)</h3>
+      <p><strong>Summary</strong> — portrait, abilities, defenses, health, shields, conditions<br>
+      <strong>Skills</strong> — full skill list with training, focus, bonuses<br>
+      <strong>Inventory</strong> — equipment, weapons, armor, credits, weight<br>
+      <strong>Features</strong> — feats, talents, traits, class features, Force powers/secrets/techniques<br>
+      <strong>Details</strong> — biography, description, class progression, affiliations, languages<br>
+      <strong>Settings</strong> — ability generation, NPC toggle, modes/effects</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Less clicking between tabs</li><li>Modern feel</li><li>Easier to find things</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Some tabs get dense</li><li>Force content mixed with feats</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Moderate (8 tabs)</h3>
+      <p><strong>Summary</strong> — portrait, abilities, defenses, health, shields<br>
+      <strong>Skills</strong> — full skill list<br>
+      <strong>Inventory</strong> — equipment, weapons, armor, credits<br>
+      <strong>Feats &amp; Talents</strong> — feats and talents<br>
+      <strong>The Force</strong> — powers, secrets, techniques, regimens (conditional)<br>
+      <strong>Traits &amp; Languages</strong> — traits, affiliations, languages, beast tab<br>
+      <strong>Details</strong> — biography, class progression<br>
+      <strong>Settings</strong> — ability gen, modes, effects</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Force content gets its own space</li><li>Balanced density</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More tabs than Option A</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Keep All (11 tabs, like old sheet)</h3>
+      <p>Summary, Class, Beast, Equipment, Feats &amp; Talents, The Force, Affiliations &amp; Languages, Traits, Modes, Changes, Settings, Notes</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Familiar to existing users</li><li>Each section has breathing room</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Many tabs for some characters</li><li>Some tabs very thin content</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

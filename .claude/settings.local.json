@@ -4,7 +4,11 @@
       "WebSearch",
       "Bash(grep:*)",
       "WebFetch(domain:foundryvtt.com)",
-      "WebFetch(domain:foundryvtt.wiki)"
+      "WebFetch(domain:foundryvtt.wiki)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(bash:*)"
     ]
   }
 }

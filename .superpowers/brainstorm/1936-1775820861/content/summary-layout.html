@@ -1,0 +1,191 @@
+<h2>Summary Tab Layout</h2>
+<p class="subtitle">This is the main view players interact with. Which layout feels right?</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#1a1a2e; padding:12px; border-radius:4px; font-size:11px; color:#ccc; font-family:monospace;">
+        <div style="display:grid; grid-template-columns:100px 1fr 1fr; gap:8px; margin-bottom:8px;">
+          <div style="background:#2a2a4e; border-radius:4px; height:120px; display:flex; align-items:center; justify-content:center; grid-row: span 2;">Portrait</div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:6px;">
+            <div style="font-size:9px; color:#888;">NAME / CLASS / LEVEL</div>
+            <div>Han Solo &bull; Scoundrel 7 / Scout 1</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:6px;">
+            <div style="font-size:9px; color:#888;">SPECIES / XP</div>
+            <div>Human &bull; 28,000 XP</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:6px; text-align:center;">
+            <div style="font-size:9px; color:#888;">HP</div>
+            <div style="font-size:14px; color:#e74c3c;">62 / 62</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:6px; text-align:center;">
+            <div style="font-size:9px; color:#888;">SHIELDS</div>
+            <div style="font-size:14px; color:#3498db;">0</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:4px; margin-bottom:8px;">
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">STR</div>
+            <div style="font-size:12px;">10</div>
+            <div style="font-size:9px; color:#888;">+0</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">DEX</div>
+            <div style="font-size:12px;">16</div>
+            <div style="font-size:9px; color:#888;">+3</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">CON</div>
+            <div style="font-size:12px;">14</div>
+            <div style="font-size:9px; color:#888;">+2</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">INT</div>
+            <div style="font-size:12px;">12</div>
+            <div style="font-size:9px; color:#888;">+1</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">WIS</div>
+            <div style="font-size:12px;">14</div>
+            <div style="font-size:9px; color:#888;">+2</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">CHA</div>
+            <div style="font-size:12px;">15</div>
+            <div style="font-size:9px; color:#888;">+2</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr) auto; gap:4px; margin-bottom:8px;">
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">REFLEX</div>
+            <div style="font-size:12px;">22</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">FORTITUDE</div>
+            <div style="font-size:12px;">20</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">WILL</div>
+            <div style="font-size:12px;">19</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">DT</div>
+            <div style="font-size:12px;">20</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:4px;">
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">BAB</div>
+            <div style="font-size:10px;">+6</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">GRAPPLE</div>
+            <div style="font-size:10px;">+9</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">FORCE PTS</div>
+            <div style="font-size:10px;">8</div>
+          </div>
+          <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:8px; color:#888;">DARK SIDE</div>
+            <div style="font-size:10px;">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A: Top-Down Flow</h3>
+      <p>Portrait + header at top, then abilities, defenses, and combat stats flow downward. Everything visible without scrolling on most screens.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#1a1a2e; padding:12px; border-radius:4px; font-size:11px; color:#ccc; font-family:monospace;">
+        <div style="display:grid; grid-template-columns:120px 1fr; gap:8px;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <div style="background:#2a2a4e; border-radius:4px; height:120px; display:flex; align-items:center; justify-content:center;">Portrait</div>
+            <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+              <div style="font-size:8px; color:#888;">HP</div>
+              <div style="font-size:14px; color:#e74c3c;">62 / 62</div>
+            </div>
+            <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+              <div style="font-size:8px; color:#888;">SHIELDS</div>
+              <div style="font-size:12px; color:#3498db;">0</div>
+            </div>
+            <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+              <div style="font-size:8px; color:#888;">FORCE PTS</div>
+              <div style="font-size:10px;">8</div>
+            </div>
+            <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+              <div style="font-size:8px; color:#888;">DARK SIDE</div>
+              <div style="font-size:10px;">0</div>
+            </div>
+            <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+              <div style="font-size:8px; color:#888;">CONDITION</div>
+              <div style="font-size:10px;">Normal</div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <div style="background:#2a2a4e; border-radius:4px; padding:6px;">
+              <span style="font-size:9px; color:#888;">Han Solo</span> &bull; Scoundrel 7 / Scout 1 &bull; Human &bull; 28,000 XP
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:4px;">
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">STR</div><div style="font-size:12px;">10</div><div style="font-size:9px; color:#888;">+0</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">DEX</div><div style="font-size:12px;">16</div><div style="font-size:9px; color:#888;">+3</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">CON</div><div style="font-size:12px;">14</div><div style="font-size:9px; color:#888;">+2</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">INT</div><div style="font-size:12px;">12</div><div style="font-size:9px; color:#888;">+1</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">WIS</div><div style="font-size:12px;">14</div><div style="font-size:9px; color:#888;">+2</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">CHA</div><div style="font-size:12px;">15</div><div style="font-size:9px; color:#888;">+2</div>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr) auto; gap:4px;">
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">REFLEX</div><div style="font-size:12px;">22</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">FORTITUDE</div><div style="font-size:12px;">20</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">WILL</div><div style="font-size:12px;">19</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">DT</div><div style="font-size:12px;">20</div>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:4px;">
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">BAB</div><div style="font-size:10px;">+6</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">GRAPPLE</div><div style="font-size:10px;">+9</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">SPEED</div><div style="font-size:10px;">6</div>
+              </div>
+              <div style="background:#2a2a4e; border-radius:4px; padding:4px; text-align:center;">
+                <div style="font-size:8px; color:#888;">DESTINY PTS</div><div style="font-size:10px;">1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B: Sidebar + Main</h3>
+      <p>Portrait, HP, shields, and resource pools in a left sidebar. Right side has header info, abilities, defenses, and combat stats. Keeps the "status at a glance" always visible.</p>
+    </div>
+  </div>
+</div>
