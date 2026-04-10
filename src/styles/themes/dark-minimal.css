@@ -1,0 +1,18 @@
+.swse-sheet[data-theme="dark-minimal"] {
+  --sheet-bg: #1a1a1e;
+  --sheet-color: #e0e0e0;
+  --card-bg: #252528;
+  --card-bg-flat: #252528;
+  --card-border: #444;
+  --label-color: #aaa;
+  --accent-color: #f0f0f0;
+  --input-bg: #2a2a2e;
+  --input-border: #555;
+  --tab-active-bg: #333;
+  --tab-active-color: #f0f0f0;
+  --tab-inactive-color: #888;
+  --hp-color: #e74c3c;
+  --shield-color: #3498db;
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --section-border: #444;
+}

@@ -1,0 +1,18 @@
+.swse-sheet[data-theme="dark-scifi"] {
+  --sheet-bg: #0a0a12;
+  --sheet-color: #c8d0d8;
+  --card-bg: linear-gradient(180deg, #0d1b2a 0%, #1b2838 100%);
+  --card-bg-flat: #0d1b2a;
+  --card-border: #1a3a5a;
+  --label-color: #4a8ab5;
+  --accent-color: #7ec8e3;
+  --input-bg: #0d1b2a;
+  --input-border: #1a3a5a;
+  --tab-active-bg: #1a3a5a;
+  --tab-active-color: #7ec8e3;
+  --tab-inactive-color: #4a6a8a;
+  --hp-color: #e74c3c;
+  --shield-color: #3498db;
+  --hover-bg: rgba(122, 200, 227, 0.08);
+  --section-border: #1a3a5a;
+}
