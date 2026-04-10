@@ -2,11 +2,11 @@
   "id": "swse",
   "title": "Star Wars: Saga Edition",
   "description": "The Star Wars: Saga Edition system for FoundryVTT!",
-  "version": "13.0.5",
+  "version": "14.0.0",
   "compatibility": {
-    "minimum": 13,
-    "verified": 13,
-    "maximum": 13
+    "minimum": 14,
+    "verified": 14,
+    "maximum": 14
   },
   "authors": [
     {
@@ -17,12 +17,51 @@
     }
   ],
   "esmodules": [
-    "module/swse.mjs"
+    "dist/swse.js"
   ],
   "styles": [
-    "css/swse.css"
+    "dist/swse.css"
   ],
-  "scripts": [],
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "npc": {},
+      "computer": {},
+      "vehicle": {},
+      "npc-vehicle": {}
+    },
+    "Item": {
+      "weapon": {},
+      "armor": {},
+      "equipment": {},
+      "feat": {},
+      "talent": {},
+      "species": {},
+      "class": {},
+      "upgrade": {},
+      "forcePower": {},
+      "starShipManeuver": {},
+      "affiliation": {},
+      "forceTechnique": {},
+      "forceSecret": {},
+      "forceRegimen": {},
+      "classFeature": {},
+      "trait": {},
+      "template": {},
+      "vehicleSystem": {},
+      "vehicleBaseType": {},
+      "language": {},
+      "background": {},
+      "destiny": {},
+      "beastAttack": {},
+      "beastSense": {},
+      "beastType": {},
+      "beastQuality": {},
+      "droid system": {},
+      "hazard": {},
+      "implant": {}
+    }
+  },
   "packs": [
     {
       "name": "affiliations",
@@ -367,8 +406,8 @@
   },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "shields",
-  "url": "https://github.com/kypvalanx/Foundry-VTT-StarWars-SagaEdition",
-  "manifest": "https://raw.githubusercontent.com/kypvalanx/Foundry-VTT-StarWars-SagaEdition/main/system.json",
-  "download": "https://github.com/kypvalanx/Foundry-VTT-StarWars-SagaEdition/archive/refs/tags/13.0.5.zip",
+  "url": "https://github.com/mountogdengc/Foundry-VTT-StarWars-SagaEdition",
+  "manifest": "https://raw.githubusercontent.com/mountogdengc/Foundry-VTT-StarWars-SagaEdition/main/system.json",
+  "download": "https://github.com/mountogdengc/Foundry-VTT-StarWars-SagaEdition/archive/refs/tags/14.0.0.zip",
   "license": "https://creativecommons.org/licenses/by-sa/3.0/legalcode"
 }
