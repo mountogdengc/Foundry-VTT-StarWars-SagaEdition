@@ -19,6 +19,8 @@ import { SWSEItem } from "./documents/SWSEItem.mjs";
 import { SWSEActiveEffect } from "./documents/SWSEActiveEffect.mjs";
 import { migrateWorld } from "./migration.mjs";
 import { SWSECharacterSheet } from "./sheets/actor/SWSECharacterSheet.mjs";
+import { SWSEVehicleSheet } from "./sheets/actor/SWSEVehicleSheet.mjs";
+import { SWSEComputerSheet } from "./sheets/actor/SWSEComputerSheet.mjs";
 import { SWSEEquipmentSheet } from "./sheets/item/SWSEEquipmentSheet.mjs";
 import { SWSEFeatureSheet } from "./sheets/item/SWSEFeatureSheet.mjs";
 import { SWSESimpleSheet } from "./sheets/item/SWSESimpleSheet.mjs";
@@ -91,6 +93,18 @@ Hooks.once("init", () => {
     types: ["character", "npc"],
     makeDefault: true,
     label: "SWSE Character Sheet",
+  });
+
+  foundry.documents.collections.Actors.registerSheet("swse", SWSEVehicleSheet, {
+    types: ["vehicle", "npc-vehicle"],
+    makeDefault: true,
+    label: "SWSE Vehicle Sheet",
+  });
+
+  foundry.documents.collections.Actors.registerSheet("swse", SWSEComputerSheet, {
+    types: ["computer"],
+    makeDefault: true,
+    label: "SWSE Computer Sheet",
   });
 
   // Item sheet registration
