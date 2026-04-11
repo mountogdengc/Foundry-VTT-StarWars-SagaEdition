@@ -24,6 +24,8 @@ import { SWSEComputerSheet } from "./sheets/actor/SWSEComputerSheet.mjs";
 import { SWSEEquipmentSheet } from "./sheets/item/SWSEEquipmentSheet.mjs";
 import { SWSEFeatureSheet } from "./sheets/item/SWSEFeatureSheet.mjs";
 import { SWSESimpleSheet } from "./sheets/item/SWSESimpleSheet.mjs";
+import { rollAttack } from "./combat/attack.mjs";
+import { createAttackMacro, executeMacroAttack } from "./combat/macro.mjs";
 
 Hooks.once("init", () => {
   console.log("SWSE | Initializing Star Wars Saga Edition system");
@@ -31,6 +33,7 @@ Hooks.once("init", () => {
   game.swse = {
     SWSEActor,
     SWSEItem,
+    rollAttack: executeMacroAttack,
     version: "14.0.0",
   };
 
@@ -209,4 +212,8 @@ Hooks.once("init", () => {
 Hooks.once("ready", async () => {
   console.log("SWSE | System ready");
   await migrateWorld();
+});
+
+Hooks.on("hotbarDrop", (bar, data, slot) => {
+  return createAttackMacro(data, slot);
 });

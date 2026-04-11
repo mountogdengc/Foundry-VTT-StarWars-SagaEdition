@@ -1,3 +1,4 @@
-// Stub — attack system will be ported in Phase 5
-export function makeAttack() {}
+// Re-export from combat module
+export { rollAttack } from "../combat/attack.mjs";
+export { rollAttack as makeAttack } from "../combat/attack.mjs";
 export class Attack {}

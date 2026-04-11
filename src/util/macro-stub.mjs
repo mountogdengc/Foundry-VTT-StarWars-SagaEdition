@@ -1,2 +1,2 @@
-// Stub — macro creation will be ported in a later phase
-export function createAttackMacro() {}
+// Re-export from combat module
+export { createAttackMacro } from "../combat/macro.mjs";
