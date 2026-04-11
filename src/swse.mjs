@@ -19,6 +19,9 @@ import { SWSEItem } from "./documents/SWSEItem.mjs";
 import { SWSEActiveEffect } from "./documents/SWSEActiveEffect.mjs";
 import { migrateWorld } from "./migration.mjs";
 import { SWSECharacterSheet } from "./sheets/actor/SWSECharacterSheet.mjs";
+import { SWSEEquipmentSheet } from "./sheets/item/SWSEEquipmentSheet.mjs";
+import { SWSEFeatureSheet } from "./sheets/item/SWSEFeatureSheet.mjs";
+import { SWSESimpleSheet } from "./sheets/item/SWSESimpleSheet.mjs";
 
 Hooks.once("init", () => {
   console.log("SWSE | Initializing Star Wars Saga Edition system");
@@ -88,6 +91,25 @@ Hooks.once("init", () => {
     types: ["character", "npc"],
     makeDefault: true,
     label: "SWSE Character Sheet",
+  });
+
+  // Item sheet registration
+  foundry.documents.collections.Items.registerSheet("swse", SWSEEquipmentSheet, {
+    types: ["weapon", "armor", "equipment", "upgrade"],
+    makeDefault: true,
+    label: "SWSE Equipment Sheet",
+  });
+
+  foundry.documents.collections.Items.registerSheet("swse", SWSEFeatureSheet, {
+    types: ["feat", "talent", "class", "species", "template", "forcePower", "forceSecret", "forceTechnique", "forceRegimen", "starShipManeuver"],
+    makeDefault: true,
+    label: "SWSE Feature Sheet",
+  });
+
+  foundry.documents.collections.Items.registerSheet("swse", SWSESimpleSheet, {
+    types: ["language", "affiliation", "background", "destiny", "classFeature", "hazard", "implant", "droid system", "vehicleSystem", "vehicleBaseType", "beastAttack", "beastSense", "beastType", "beastQuality"],
+    makeDefault: true,
+    label: "SWSE Simple Sheet",
   });
 
   // Settings
