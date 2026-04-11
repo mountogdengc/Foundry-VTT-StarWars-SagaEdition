@@ -692,11 +692,11 @@ export function getTokenDistanceInSquares(source, target) {
 }
 
 const ATTRIBUTE_RESOLUTION_ORDER = [
-    CONST.ACTIVE_EFFECT_MODES.ADD,
-    CONST.ACTIVE_EFFECT_MODES.DOWNGRADE,
-    CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-    CONST.ACTIVE_EFFECT_MODES.MULTIPLY,
-    CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+    "add",
+    "downgrade",
+    "upgrade",
+    "multiply",
+    "override",
     6,
 ];
 
@@ -949,19 +949,19 @@ export function resolveExpressionReduce(values, actor) {
         for (const mode of ATTRIBUTE_RESOLUTION_ORDER) {
             for (const value of z[mode] || []) {
                 switch (mode) {
-                    case CONST.ACTIVE_EFFECT_MODES.ADD:
+                    case "add":
                         currentValue = addValues(currentValue, value.value);
                         break;
-                    case CONST.ACTIVE_EFFECT_MODES.DOWNGRADE:
+                    case "downgrade":
                         currentValue = downgradeValues(currentValue, value.value);
                         break;
-                    case CONST.ACTIVE_EFFECT_MODES.UPGRADE:
+                    case "upgrade":
                         currentValue = upgradeValues(currentValue, value.value);
                         break;
-                    case CONST.ACTIVE_EFFECT_MODES.MULTIPLY:
+                    case "multiply":
                         currentValue = multiplyValues(currentValue, value.value);
                         break;
-                    case CONST.ACTIVE_EFFECT_MODES.OVERRIDE:
+                    case "override":
                         currentValue = value.value;
                         break;
                     case 6:
@@ -1016,7 +1016,7 @@ function resolveValuesReduce(values, actor) {
             let z = resolutionSorting[priority];
             for (const mode of ATTRIBUTE_RESOLUTION_ORDER) {
                 for (const value of z[mode] || []) {
-                    if(mode === CONST.ACTIVE_EFFECT_MODES.OVERRIDE){
+                    if(mode === "override"){
                         if(!lastPriority || lastPriority < priority) {
                             currentValue = [];
                         }
@@ -1313,9 +1313,9 @@ export function convertOverrideToMode(changes) {
             let override = change.override;
             delete change.override;
             if (override) {
-                change.mode = CONST.ACTIVE_EFFECT_MODES.OVERRIDE;
+                change.mode = "override";
             } else {
-                change.mode = CONST.ACTIVE_EFFECT_MODES.ADD;
+                change.mode = "add";
             }
         }
         return changes;

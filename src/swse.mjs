@@ -84,7 +84,7 @@ Hooks.once("init", () => {
   initializeStatusEffects(CONFIG);
 
   // Sheet registration
-  Actors.registerSheet("swse", SWSECharacterSheet, {
+  foundry.documents.collections.Actors.registerSheet("swse", SWSECharacterSheet, {
     types: ["character", "npc"],
     makeDefault: true,
     label: "SWSE Character Sheet",
