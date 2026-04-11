@@ -18,6 +18,7 @@ import { SWSEActor } from "./documents/SWSEActor.mjs";
 import { SWSEItem } from "./documents/SWSEItem.mjs";
 import { SWSEActiveEffect } from "./documents/SWSEActiveEffect.mjs";
 import { migrateWorld } from "./migration.mjs";
+import { SWSECharacterSheet } from "./sheets/actor/SWSECharacterSheet.mjs";
 
 Hooks.once("init", () => {
   console.log("SWSE | Initializing Star Wars Saga Edition system");
@@ -82,6 +83,13 @@ Hooks.once("init", () => {
   // Status effects
   initializeStatusEffects(CONFIG);
 
+  // Sheet registration
+  Actors.registerSheet("swse", SWSECharacterSheet, {
+    types: ["character", "npc"],
+    makeDefault: true,
+    label: "SWSE Character Sheet",
+  });
+
   // Settings
   game.settings.register("swse", "systemMigrationVersion", {
     name: "System Migration Version",
@@ -145,6 +153,20 @@ Hooks.once("init", () => {
     config: true,
     type: Boolean,
     default: false,
+  });
+
+  game.settings.register("swse", "sheetTheme", {
+    name: "Sheet Theme",
+    hint: "Visual theme for character sheets.",
+    scope: "client",
+    config: false,
+    type: String,
+    default: "dark-scifi",
+    choices: {
+      "dark-scifi": "Dark Sci-Fi",
+      "clean-neutral": "Clean & Neutral",
+      "dark-minimal": "Dark Minimal",
+    },
   });
 });
 
