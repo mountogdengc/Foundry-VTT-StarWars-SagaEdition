@@ -931,12 +931,25 @@ function upgradeValues(a, b) {
     {return a}return b;
 }
 
+// Normalize legacy numeric modes to v14 string modes
+function normalizeMode(mode) {
+    if (typeof mode === "string") return mode;
+    switch (mode) {
+        case 1: return "multiply";
+        case 2: return "add";
+        case 3: return "downgrade";
+        case 4: return "upgrade";
+        case 5: return "override";
+        default: return mode;
+    }
+}
+
 export function resolveExpressionReduce(values, actor) {
     const resolutionSorting = {};
     for (const value of values) {
         const priority = value.priority || 1;
         resolutionSorting[priority] = resolutionSorting[priority] || {};
-        const mode = value.mode || 2;
+        const mode = normalizeMode(value.mode) || "add";
         resolutionSorting[priority][mode] = resolutionSorting[priority][mode] || [];
         value.value = resolveExpression(value, actor)
         resolutionSorting[priority][mode].push(value)
@@ -1004,7 +1017,7 @@ function resolveValuesReduce(values, actor) {
         for (const value of values) {
             const priority = value.priority || 1;
             resolutionSorting[priority] = resolutionSorting[priority] || {};
-            const mode = value.mode || 2;
+            const mode = normalizeMode(value.mode) || "add";
             resolutionSorting[priority][mode] = resolutionSorting[priority][mode] || [];
             resolutionSorting[priority][mode].push(value)
         }
