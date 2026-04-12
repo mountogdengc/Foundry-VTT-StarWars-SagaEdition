@@ -34,7 +34,7 @@ export class SWSEVehicleSheet extends foundry.applications.sheets.ActorSheetV2 {
   }
 
   _onDrop(event) {
-    const data = TextEditor.getDragEventData(event);
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
     if (data.type === "Item") return this._onDropItem(event, data);
     if (data.type === "Actor") return this._onDropActor(event, data);
   }

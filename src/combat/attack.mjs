@@ -84,6 +84,5 @@ export async function rollAttack(actor, weapon) {
     speaker: ChatMessage.getSpeaker({ actor }),
     content: html,
     rolls: [attackRoll, damageRoll],
-    type: CONST.CHAT_MESSAGE_STYLES?.OTHER ?? 0,
   });
 }
