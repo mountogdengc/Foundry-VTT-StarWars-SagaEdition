@@ -207,6 +207,124 @@ Hooks.once("init", () => {
       "dark-minimal": "Dark Minimal",
     },
   });
+
+  // --- System Options ---
+
+  game.settings.register("swse", "enableTargetResultsOnAttackCard", {
+    name: "Enable Target Results on Attack Card",
+    hint: "Show target defense comparison on attack rolls for targeted actors.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register("swse", "enableAdvancedCompendium", {
+    name: "Enable Advanced Compendium Browser",
+    hint: "May cause performance issues on slower browsers. Refresh required.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true,
+  });
+
+  game.settings.register("swse", "enableHomebrewContent", {
+    name: "Enable Homebrew Content",
+    hint: "Enable homebrew content from the wiki.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true,
+  });
+
+  game.settings.register("swse", "enableNotificationsOnHealthChange", {
+    name: "Health Change Notifications",
+    hint: "Show chat notifications when HP changes.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register("swse", "automaticItems", {
+    name: "Automatic Feats or Talents",
+    hint: 'Granted to new characters. Comma-separated, e.g. "FEAT:Toughness,TALENT:Armored Defense"',
+    scope: "world",
+    config: true,
+    type: String,
+    default: "",
+  });
+
+  game.settings.register("swse", "automaticItemsWhenItemIsAdded", {
+    name: "Bonus Feats or Talents",
+    hint: 'Granted when trigger item is added, e.g. "FEAT:Point-Blank Shot>FEAT:Precise Shot"',
+    scope: "world",
+    config: true,
+    type: String,
+    default: "",
+  });
+
+  // --- Homebrew Options ---
+
+  game.settings.register("swse", "skillFocusDelay", {
+    name: "Delay Skill Focus",
+    hint: "Skill Focus benefits do not apply until level 7.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register("swse", "lilLiteralistHomebrewBonusTrainedSkill", {
+    name: "Bonus Trained Knowledge Skills",
+    hint: "Number of bonus trained Knowledge skills at first level.",
+    scope: "world",
+    config: true,
+    type: Number,
+    default: 0,
+  });
+
+  game.settings.register("swse", "homebrewAdjustPointBuy", {
+    name: "Point Buy Budget",
+    hint: "Total points available for point buy ability generation.",
+    scope: "world",
+    config: true,
+    type: Number,
+    default: 25,
+  });
+
+  game.settings.register("swse", "homebrewAdjustPointBuyDroid", {
+    name: "Droid Point Buy Budget",
+    hint: "Total points available for droid point buy ability generation.",
+    scope: "world",
+    config: true,
+    type: Number,
+    default: 21,
+  });
+
+  game.settings.register("swse", "criticalHitType", {
+    name: "Critical Hit Mode",
+    hint: "How critical hit damage is calculated.",
+    scope: "world",
+    config: true,
+    type: String,
+    default: "Default",
+    choices: {
+      "Default": "Double value after rolling",
+      "Double Dice": "Double dice rolled",
+      "Crunchy Crit": "Add max damage to rolled",
+      "Max Damage": "Replace roll with max damage",
+    },
+  });
+
+  game.settings.register("swse", "disableBackgroundDestinyLimit", {
+    name: "Disable Background/Destiny Limit",
+    hint: "Allow selecting more than one background or destiny.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
 });
 
 Hooks.once("ready", async () => {
