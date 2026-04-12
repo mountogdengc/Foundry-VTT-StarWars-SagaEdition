@@ -27,6 +27,8 @@ import { SWSESimpleSheet } from "./sheets/item/SWSESimpleSheet.mjs";
 import { SWSECompendiumBrowser } from "./sheets/compendium/SWSECompendiumBrowser.mjs";
 import { rollAttack } from "./combat/attack.mjs";
 import { createAttackMacro, executeMacroAttack } from "./combat/macro.mjs";
+import { initializeDragRuler } from "./module-support/drag-ruler.mjs";
+import { initializePolyglot } from "./module-support/polyglot.mjs";
 
 Hooks.once("init", () => {
   console.log("SWSE | Initializing Star Wars Saga Edition system");
@@ -92,6 +94,10 @@ Hooks.once("init", () => {
 
   // Status effects
   initializeStatusEffects(CONFIG);
+
+  // Module integrations
+  initializeDragRuler();
+  initializePolyglot();
 
   // Sheet registration
   foundry.documents.collections.Actors.registerSheet("swse", SWSECharacterSheet, {

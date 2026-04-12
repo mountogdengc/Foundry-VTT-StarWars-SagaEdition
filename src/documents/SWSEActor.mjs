@@ -170,6 +170,39 @@ export class SWSEActor extends Actor {
     return this.isDroid;
   }
 
+  get gridSpeeds() {
+    return this.getCached("gridSpeed", () => {
+      if (["vehicle", "npc-vehicle"].includes(this.type)) {
+        const vehicleSpeed = getInheritableAttribute({ entity: this, attributeKey: "speedStarshipScale", reduce: "SUM" });
+        const characterSpeed = getInheritableAttribute({ entity: this, attributeKey: "speedCharacterScale", reduce: "SUM" });
+        return [
+          { type: "Vehicle Scale", value: vehicleSpeed || 0 },
+          { type: "Character Scale", value: characterSpeed || 0 },
+        ];
+      }
+
+      let attributes = getInheritableAttribute({ entity: this, attributeKey: "speed", reduce: "VALUES" });
+      const speeds = [];
+      for (const speed of attributes) {
+        const result = /([\w\s->]*)\s(\d*)/.exec(speed);
+        if (result) speeds.push({ type: result[1], value: parseInt(result[2]) || 0 });
+      }
+      if (speeds.length === 0) speeds.push({ type: "Stationary", value: 0 });
+      return speeds.filter(s => !s.type.includes("->"));
+    });
+  }
+
+  get heaviestArmorType() {
+    let armorType = "";
+    for (const armor of (this.equipped || []).filter(item => item.type === "armor")) {
+      const at = armor.system?.subtype || "";
+      if (at === "Heavy Armor" || (at === "Medium Armor" && armorType !== "Heavy") || (at === "Light Armor" && !armorType)) {
+        armorType = at.replace(" Armor", "");
+      }
+    }
+    return armorType;
+  }
+
   itemsWithTypes(types) {
     const items = [];
     for (const type of types) {
