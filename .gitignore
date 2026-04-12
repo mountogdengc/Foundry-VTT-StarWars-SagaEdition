@@ -4,3 +4,14 @@ ProgressChecklist.txt
 node_modules/
 raw_export/
 dist/
+.superpowers/
+.claude/settings.local.json
+
+# Foundry LevelDB runtime files (regenerated on world load)
+packs/*/*.log
+packs/*/CURRENT
+packs/*/LOG
+packs/*/LOG.old
+packs/*/LOCK
+packs/*/MANIFEST-*
+packs/*/lost/
