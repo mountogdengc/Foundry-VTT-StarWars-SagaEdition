@@ -241,3 +241,27 @@ export function getArmorCheckPenalty(actor) {
   if (wearingLight && !lightProf) return -2;
   return 0;
 }
+
+/**
+ * Resolve the crew operator for a vehicle weapon attack.
+ */
+export async function resolveCrewOperator(vehicle, weapon) {
+  const weaponPosition = getInheritableAttribute({
+    entity: weapon,
+    attributeKey: "weaponPosition",
+    reduce: "FIRST",
+  }) || "gunner";
+
+  const position = typeof weaponPosition === "string" ? weaponPosition : (weaponPosition.value || "gunner");
+  const links = vehicle.system.actorLinks ?? [];
+  const link = links.find(l => l.position === position) || links.find(l => l.position === "pilot");
+
+  if (!link) return { operator: null, position };
+
+  try {
+    const operator = await fromUuid(link.uuid);
+    return { operator, position };
+  } catch {
+    return { operator: null, position };
+  }
+}
