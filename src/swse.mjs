@@ -24,6 +24,7 @@ import { SWSEComputerSheet } from "./sheets/actor/SWSEComputerSheet.mjs";
 import { SWSEEquipmentSheet } from "./sheets/item/SWSEEquipmentSheet.mjs";
 import { SWSEFeatureSheet } from "./sheets/item/SWSEFeatureSheet.mjs";
 import { SWSESimpleSheet } from "./sheets/item/SWSESimpleSheet.mjs";
+import { SWSECompendiumBrowser } from "./sheets/compendium/SWSECompendiumBrowser.mjs";
 import { rollAttack } from "./combat/attack.mjs";
 import { createAttackMacro, executeMacroAttack } from "./combat/macro.mjs";
 
@@ -34,6 +35,7 @@ Hooks.once("init", () => {
     SWSEActor,
     SWSEItem,
     rollAttack: executeMacroAttack,
+    openCompendiumBrowser: () => new SWSECompendiumBrowser().render(true),
     version: "14.0.0",
   };
 
@@ -334,4 +336,19 @@ Hooks.once("ready", async () => {
 
 Hooks.on("hotbarDrop", (bar, data, slot) => {
   return createAttackMacro(data, slot);
+});
+
+Hooks.on("renderSidebarTab", (app, html) => {
+  if (app.tabName !== "compendium") return;
+  const header = html[0]?.querySelector(".directory-header") ?? html.querySelector?.(".directory-header");
+  if (!header) return;
+  const existing = header.querySelector(".swse-compendium-btn");
+  if (existing) return;
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.classList.add("swse-compendium-btn");
+  btn.innerHTML = '<i class="fas fa-atlas"></i> SWSE Browser';
+  btn.style.cssText = "margin:4px; padding:4px 8px; font-size:12px;";
+  btn.addEventListener("click", () => game.swse.openCompendiumBrowser());
+  header.appendChild(btn);
 });
