@@ -1,5 +1,6 @@
 import { mount, unmount } from "svelte";
 import CharacterSheet from "./CharacterSheet.svelte";
+import { meetsPrerequisites, formatPrerequisites } from "../../util/prerequisite.mjs";
 
 export class SWSECharacterSheet extends foundry.applications.sheets.ActorSheetV2 {
   static DEFAULT_OPTIONS = {
@@ -58,6 +59,21 @@ export class SWSECharacterSheet extends foundry.applications.sheets.ActorSheetV2
     const item = await Item.implementation.fromDropData(data);
     if (!item) return;
     if (item.parent?.id === this.document.id) return;
+
+    // Check prerequisites unless actor has ignorePrerequisites enabled
+    const ignorePrereqs = this.document.system.settings?.ignorePrerequisites?.value;
+    if (!ignorePrereqs && item.system?.prerequisite) {
+      const result = meetsPrerequisites(this.document, item.system.prerequisite, { isAdd: true });
+      if (result.doesFail) {
+        const failureHtml = formatPrerequisites(result.failureList);
+        const confirmed = await Dialog.confirm({
+          title: `Prerequisites Not Met: ${item.name}`,
+          content: `<p><strong>${item.name}</strong> has unmet prerequisites:</p>${failureHtml}<p>Add it anyway?</p>`,
+        });
+        if (!confirmed) return;
+      }
+    }
+
     return this.document.createEmbeddedDocuments("Item", [item.toObject()]);
   }
 }
