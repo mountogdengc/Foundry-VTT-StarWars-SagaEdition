@@ -74,6 +74,44 @@ export class SWSECharacterSheet extends foundry.applications.sheets.ActorSheetV2
       }
     }
 
+    // Class level management — stack levels on existing class instead of creating duplicate
+    if (item.type === "class") {
+      return this._onDropClass(item);
+    }
+
     return this.document.createEmbeddedDocuments("Item", [item.toObject()]);
+  }
+
+  /**
+   * Handle dropping a class item. If the class already exists on the actor,
+   * add a new level to it. Otherwise create it as a new item with level 1.
+   */
+  async _onDropClass(item) {
+    const actor = this.document;
+
+    // Calculate next character level
+    let maxLevel = 0;
+    for (const classItem of (actor.itemTypes?.class || [])) {
+      for (const lvl of (classItem.levelsTaken || [])) {
+        if (lvl > maxLevel) maxLevel = lvl;
+      }
+    }
+    const nextLevel = maxLevel + 1;
+
+    // Check if this class already exists on the actor
+    const existing = actor.itemTypes?.class?.find(c => c.name === item.name);
+    if (existing) {
+      const levels = [...(existing.levelsTaken || [])];
+      levels.push(nextLevel);
+      await existing.update({ "system.levelsTaken": levels });
+      ui.notifications.info(`${actor.name} took level ${levels.length} of ${existing.name} (Character Level ${nextLevel}).`);
+      return;
+    }
+
+    // New class — create with level 1
+    const itemData = item.toObject();
+    itemData.system.levelsTaken = [nextLevel];
+    const [created] = await actor.createEmbeddedDocuments("Item", [itemData]);
+    ui.notifications.info(`${actor.name} took level 1 of ${created.name} (Character Level ${nextLevel}).`);
   }
 }

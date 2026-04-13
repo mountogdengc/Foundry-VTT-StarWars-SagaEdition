@@ -19,6 +19,11 @@ export class SWSEItem extends Item {
     return SWSEItem.buildItemName(this);
   }
 
+  get levelsTaken() {
+    if (this.type !== "class") return [];
+    return this.system.levelsTaken || [];
+  }
+
   get changes() {
     return this.system.changes || [];
   }
