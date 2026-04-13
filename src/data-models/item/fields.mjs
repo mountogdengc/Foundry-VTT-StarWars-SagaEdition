@@ -86,6 +86,7 @@ export class LevelFields {
   static get common() {
     return {
       levels: new fields.ArrayField(new fields.ObjectField(), { initial: [], label: "Levels" }),
+      levelsTaken: new fields.ArrayField(new fields.NumberField({ integer: true }), { initial: [], label: "Levels Taken" }),
     };
   }
 }
