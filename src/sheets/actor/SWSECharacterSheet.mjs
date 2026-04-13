@@ -1,6 +1,7 @@
 import { mount, unmount } from "svelte";
 import CharacterSheet from "./CharacterSheet.svelte";
 import { meetsPrerequisites, formatPrerequisites } from "../../util/prerequisite.mjs";
+import { grantClassFeats, grantProvidedItems } from "../../character/item-grant.mjs";
 
 export class SWSECharacterSheet extends foundry.applications.sheets.ActorSheetV2 {
   static DEFAULT_OPTIONS = {
@@ -79,12 +80,18 @@ export class SWSECharacterSheet extends foundry.applications.sheets.ActorSheetV2
       return this._onDropClass(item);
     }
 
-    return this.document.createEmbeddedDocuments("Item", [item.toObject()]);
+    const [created] = await this.document.createEmbeddedDocuments("Item", [item.toObject()]);
+
+    // Grant provided items (traits, etc.) from the dropped item
+    if (created) await grantProvidedItems(this.document, created);
+
+    return created;
   }
 
   /**
    * Handle dropping a class item. If the class already exists on the actor,
    * add a new level to it. Otherwise create it as a new item with level 1.
+   * Then grant starting feats.
    */
   async _onDropClass(item) {
     const actor = this.document;
@@ -97,6 +104,7 @@ export class SWSECharacterSheet extends foundry.applications.sheets.ActorSheetV2
       }
     }
     const nextLevel = maxLevel + 1;
+    const isFirstCharacterLevel = maxLevel === 0;
 
     // Check if this class already exists on the actor
     const existing = actor.itemTypes?.class?.find(c => c.name === item.name);
@@ -113,5 +121,11 @@ export class SWSECharacterSheet extends foundry.applications.sheets.ActorSheetV2
     itemData.system.levelsTaken = [nextLevel];
     const [created] = await actor.createEmbeddedDocuments("Item", [itemData]);
     ui.notifications.info(`${actor.name} took level 1 of ${created.name} (Character Level ${nextLevel}).`);
+
+    // Grant starting feats
+    if (created) await grantClassFeats(actor, created, isFirstCharacterLevel);
+
+    // Grant provided items (traits from the class)
+    if (created) await grantProvidedItems(actor, created);
   }
 }
